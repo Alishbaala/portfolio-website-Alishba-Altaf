@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alishba Altaf Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: dark, particle-field hero, then calm single-column sections on a 6-col project grid.
+   Single committed dark look (particles need it). */
+:root {
+  --bg: #0a0c11;
+  --surface: #11141b;
+  --line: #232835;
+  --fg: #ebe8e1;
+  --muted: #8f96a6;
+  --accent: #ff6f7d;
+  --accent-soft: rgba(255,111,125,.13);
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.brand { font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; letter-spacing: -.01em; text-decoration: none; }
+.brand i { color: var(--accent); font-style: normal; }
+.nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; overflow-x: auto; }
+.nav a.l { font-family: var(--font-mono); font-size: .78rem; color: var(--muted); text-decoration: none; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
+.nav a.l:hover { color: var(--fg); }
+
+/* hero */
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero .wrap { position: relative; padding-block: 88px 80px; }
+.kicker { font-family: var(--font-mono); font-size: .8rem; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; margin: 0 0 18px; }
+.kicker::before { content: ""; width: 28px; height: 1px; background: var(--accent); }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.8rem, 9.5vw, 6rem); line-height: .95; letter-spacing: -.035em; margin: 0 0 22px; text-wrap: balance; }
+h1 span { color: var(--accent); }
+.role { font-size: clamp(1.05rem, 2.6vw, 1.4rem); color: var(--muted); max-width: 46ch; margin: 0 0 28px; }
+.role b { color: var(--fg); font-weight: 500; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { font-family: var(--font-mono); font-size: .85rem; text-decoration: none; padding: 12px 20px; border-radius: 6px; border: 1px solid var(--line); background: color-mix(in srgb, var(--surface) 80%, transparent); transition: border-color .2s, transform .2s; }
+.btn:hover { border-color: var(--accent); transform: translateY(-2px); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #1a0b0e; font-weight: 500; }
+
+/* sections */
+section { padding-block: 76px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-family: var(--font-mono); font-size: .78rem; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; margin: 0 0 10px; }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.9rem, 5vw, 2.8rem); line-height: 1.08; letter-spacing: -.02em; margin: 0 0 32px; text-wrap: balance; max-width: 20ch; }
+
+/* about */
+.about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; }
+.about > * { min-width: 0; }
+.about p { margin: 0 0 16px; color: #c9c7c1; max-width: 62ch; }
+.facts { display: grid; gap: 0; align-content: start; border-top: 1px solid var(--line); }
+.facts div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: .92rem; }
+.facts dt { color: var(--muted); font-family: var(--font-mono); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; padding-top: 2px; }
+.facts dd { margin: 0; text-align: right; }
+
+/* skills */
+.skillgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; }
+.skillgrid h3 { font-family: var(--font-mono); font-size: .8rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin: 0 0 14px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { font-size: .88rem; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+
+/* projects */
+.projects { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+.card { grid-column: span 2; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 12px; min-width: 0; transition: border-color .25s, transform .25s; }
+a.card { text-decoration: none; color: inherit; }
+.card:first-child { grid-column: span 6; }
+.card .go { font-family: var(--font-mono); font-size: .8rem; color: var(--accent); margin-top: 4px; }
+.card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.card .tagline { font-family: var(--font-mono); font-size: .74rem; color: var(--accent); text-transform: uppercase; letter-spacing: .1em; }
+.card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; line-height: 1.2; letter-spacing: -.01em; margin: 0; }
+.card p { margin: 0; color: #b9b8b3; font-size: .95rem; flex: 1; }
+.card .tags { margin-top: 4px; }
+.card .tag { font-size: .78rem; padding: 4px 10px; background: transparent; color: var(--muted); }
+
+/* experience */
+.tl { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.tl li { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
+.tl li:last-child { border-bottom: 1px solid var(--line); }
+.tl .where { font-family: var(--font-mono); font-size: .82rem; color: var(--accent); }
+.tl h3 { font-family: var(--font-display); font-size: 1.2rem; margin: 0 0 4px; }
+.tl p { margin: 0; color: #b9b8b3; max-width: 60ch; }
+.tl > li > * { min-width: 0; }
+
+/* certs */
+.certs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.cert { border: 1px solid var(--line); border-radius: 10px; padding: 22px; background: var(--surface); }
+a.cert { display: block; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+a.cert:hover { border-color: var(--accent); transform: translateY(-2px); }
+.cert small { display: block; font-family: var(--font-mono); font-size: .74rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 8px; }
+.cert b { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; }
+
+/* contact */
+.contact { border-bottom: 0; }
+.contact h2 { max-width: 16ch; }
+.contact p.lead { color: #c9c7c1; max-width: 52ch; margin: 0 0 28px; }
+.channels { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.channel { border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; background: var(--surface); }
+a.channel { display: block; text-decoration: none; transition: border-color .2s, transform .2s; }
+a.channel:hover { border-color: var(--accent); transform: translateY(-2px); }
+.channel small { display: block; font-family: var(--font-mono); font-size: .74rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px; }
+.channel b { font-weight: 500; }
+
+footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--muted); font-family: var(--font-mono); font-size: .78rem; }
+footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 820px) {
+  .about { grid-template-columns: 1fr; gap: 32px; }
+  .projects { grid-template-columns: 1fr; }
+  .card, .card:first-child { grid-column: auto; }
+  .tl li { grid-template-columns: 1fr; gap: 6px; }
+  .nav ul { gap: 16px; }
+  section { padding-block: 56px; }
+  .hero .wrap { padding-block: 64px 56px; }
+}
+@media (max-width: 520px) { .nav .brand { display: none; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">alishba altaf<i>.</i></a>
+    <ul>
+      <li><a class="l" href="#about">About</a></li>
+      <li><a class="l" href="#projects">Projects</a></li>
+      <li><a class="l" href="#experience">Experience</a></li>
+      <li><a class="l" href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <canvas id="field" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <p class="kicker">Lahore, Pakistan</p>
+      <h1>Alishba Altaf<span>.</span></h1>
+      <p class="role"><b>Computer Science student</b> at Superior University, Lahore, building skills in Python, web development, C++ and data structures.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="#contact">Work with me</a>
+        <a class="btn" href="https://www.linkedin.com/in/alishba-altaf-772939393" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap about">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>Code on one side, words on the other.</h2>
+        <p>I study Computer Science at Superior University in Lahore. I like building things that run: a shortest-path navigator in C++, a database for a tailor shop, a machine learning model, a shopping site.</p>
+        <p>Outside class I freelance as an Urdu–English translator on Fiverr, and I take on design, video editing and data entry work. All of it rewards the same habit: paying attention to details.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Studying</dt><dd>Computer Science</dd></div>
+        <div><dt>University</dt><dd>Superior University</dd></div>
+        <div><dt>Based in</dt><dd>Lahore</dd></div>
+        <div><dt>Languages</dt><dd>Urdu, English</dd></div>
+        <div><dt>Freelance</dt><dd>Fiverr</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <p class="eyebrow">Toolkit</p>
+      <h2>What I work with</h2>
+      <div class="skillgrid">
+        <div><h3>Programming</h3><div class="tags"><span class="tag">Python</span><span class="tag">C++</span><span class="tag">Web development</span><span class="tag">Data Structures &amp; Algorithms</span></div></div>
+        <div><h3>Data &amp; AI</h3><div class="tags"><span class="tag">Machine Learning</span><span class="tag">Generative AI</span><span class="tag">Databases</span></div></div>
+        <div><h3>Language</h3><div class="tags"><span class="tag">Urdu–English translation</span><span class="tag">Bilingual writing</span></div></div>
+        <div><h3>Design &amp; content</h3><div class="tags"><span class="tag">Canva design</span><span class="tag">CapCut editing</span><span class="tag">AI video</span><span class="tag">Data entry</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <p class="eyebrow">Selected work</p>
+      <h2>Projects I built</h2>
+      <div class="projects">
+        <a class="card" href="https://github.com/altafhussain21466-prog/code_alpha-stock-portfolio-tracker" target="_blank" rel="noopener noreferrer">
+          <span class="tagline">GitHub · CodeAlpha</span>
+          <h3>Stock Portfolio Tracker</h3>
+          <p>A stock portfolio tracker built during my CodeAlpha internship. The full source code is on GitHub.</p>
+          <div class="tags"><span class="tag">CodeAlpha</span><span class="tag">Stock tracker</span><span class="tag">Source code</span></div>
+          <span class="go">View repository on GitHub ↗</span>
+        </a>
+        <a class="card" href="https://github.com/altafhussain21466-prog/AIR-canvas-project-2" target="_blank" rel="noopener noreferrer">
+          <span class="tagline">GitHub · Project</span>
+          <h3>Air Canvas</h3>
+          <p>An air canvas project where drawing happens through hand movements in the air instead of a mouse or pen.</p>
+          <div class="tags"><span class="tag">Air Canvas</span><span class="tag">Source code</span></div>
+          <span class="go">View repository on GitHub ↗</span>
+        </a>
+        <article class="card">
+          <span class="tagline">Algorithms</span>
+          <h3>DSA Smart Navigation System</h3>
+          <p>A navigation system that finds the shortest route between locations using Dijkstra's algorithm, written in C++.</p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">Dijkstra</span><span class="tag">Graphs</span></div>
+        </article>
+        <article class="card">
+          <span class="tagline">Machine learning</span>
+          <h3>Smartphone User Prediction</h3>
+          <p>A machine learning model built to predict outcomes for smartphone users from their data.</p>
+          <div class="tags"><span class="tag">Machine Learning</span><span class="tag">Prediction</span></div>
+        </article>
+        <article class="card">
+          <span class="tagline">Databases</span>
+          <h3>Tailor Shop Database System</h3>
+          <p>A database system that keeps a tailor shop's records organized and easy to look up.</p>
+          <div class="tags"><span class="tag">Database</span><span class="tag">Management system</span></div>
+        </article>
+        <article class="card">
+          <span class="tagline">Web</span>
+          <h3>Shopping Website</h3>
+          <p>An online shopping website where visitors browse products and shop.</p>
+          <div class="tags"><span class="tag">Web</span><span class="tag">E-commerce</span></div>
+        </article>
+        <article class="card">
+          <span class="tagline">Systems</span>
+          <h3>Bank Account Management System</h3>
+          <p>A system for creating and managing bank accounts and their records.</p>
+          <div class="tags"><span class="tag">Management system</span><span class="tag">Logic</span></div>
+        </article>
+        <article class="card">
+          <span class="tagline">Design · Canva</span>
+          <h3>Social Media Post Designs</h3>
+          <p>A set of clean, on-brand social media posts designed in Canva for consistent, scroll-stopping feeds.</p>
+          <div class="tags"><span class="tag">Canva</span><span class="tag">Social media</span></div>
+        </article>
+        <article class="card">
+          <span class="tagline">Design · Canva</span>
+          <h3>Banner &amp; Poster Design</h3>
+          <p>Banners and posters created in Canva, including a dark tech-style LinkedIn background banner.</p>
+          <div class="tags"><span class="tag">Canva</span><span class="tag">Branding</span></div>
+        </article>
+        <article class="card">
+          <span class="tagline">Video · CapCut</span>
+          <h3>Short-Form Reel Edit</h3>
+          <p>A short vertical video edited in CapCut with cuts, captions and transitions paced for reels and Shorts.</p>
+          <div class="tags"><span class="tag">CapCut</span><span class="tag">Reels</span></div>
+        </article>
+        <article class="card">
+          <span class="tagline">Video · CapCut</span>
+          <h3>AI Video Edit</h3>
+          <p>A video that combines AI-generated clips with CapCut editing, music and text overlays.</p>
+          <div class="tags"><span class="tag">CapCut</span><span class="tag">AI video</span></div>
+        </article>
+        <article class="card">
+          <span class="tagline">Video · CapCut</span>
+          <h3>Promo Video Edit</h3>
+          <p>A promotional video cut in CapCut with titles, effects and a clear call to action.</p>
+          <div class="tags"><span class="tag">CapCut</span><span class="tag">Promo</span></div>
+        </article>
+        <article class="card">
+          <span class="tagline">Data entry</span>
+          <h3>Data Entry Project</h3>
+          <p>Accurate entry and cleanup of records into organized spreadsheets, checked for errors and duplicates.</p>
+          <div class="tags"><span class="tag">Data entry</span><span class="tag">Spreadsheets</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <p class="eyebrow">Experience &amp; credentials</p>
+      <h2>Where I have worked and learned</h2>
+      <ul class="tl">
+        <li>
+          <span class="where">CodeAlpha</span>
+          <div><h3>Python Programming Intern</h3><p>Completed a Python programming internship and shared the projects and certification publicly on LinkedIn.</p></div>
+        </li>
+        <li>
+          <span class="where">Fiverr</span>
+          <div><h3>Urdu–English Translator</h3><p>Freelance translation between Urdu and English for clients worldwide, paid through Payoneer.</p></div>
+        </li>
+        <li>
+          <span class="where">ALM Company</span>
+          <div><h3>Project work</h3><p>Worked with ALM Company on professional assignments alongside my studies.</p></div>
+        </li>
+        <li>
+          <span class="where">Superior University</span>
+          <div><h3>BS Computer Science</h3><p>Studying core CS: programming, data structures, databases and machine learning.</p></div>
+        </li>
+      </ul>
+      <div class="certs" style="margin-top:32px">
+        <div class="cert"><small>SoloLearn</small><b>Python certification</b></div>
+        <div class="cert"><small>SoloLearn</small><b>Generative AI certification</b></div>
+        <div class="cert"><small>Google</small><b>AI Fundamentals certificate</b></div>
+        <a class="cert" href="https://api2.sololearn.com/v2/certificates/CC-PIRVY4GH/image/png?t=639134069973743900" target="_blank" rel="noopener noreferrer"><small>SoloLearn · Verified</small><b>View certificate ↗</b></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h2>Let's work together</h2>
+      <p class="lead">Need an Urdu–English translation, a Python script, a design, a video edit or data entry? Reach out on any channel below.</p>
+      <div class="channels">
+        <div class="channel"><small>Hire me</small><b>Fiverr — Urdu–English translation</b></div>
+        <a class="channel" href="https://github.com/altafhussain21466-prog/code_alpha-stock-portfolio-tracker" target="_blank" rel="noopener noreferrer"><small>Code</small><b>GitHub — Stock Portfolio Tracker ↗</b></a>
+        <a class="channel" href="https://github.com/altafhussain21466-prog/AIR-canvas-project-2" target="_blank" rel="noopener noreferrer"><small>Code</small><b>GitHub — Air Canvas ↗</b></a>
+        <a class="channel" href="https://www.linkedin.com/posts/alishba-altaf-772939393_sql-webdevelopment-dataanalysis-activity-7483829174151991296-f0Il" target="_blank" rel="noopener noreferrer"><small>Post</small><b>LinkedIn — SQL, web development &amp; data analysis ↗</b></a>
+        <a class="channel" href="https://www.linkedin.com/in/alishba-altaf-772939393" target="_blank" rel="noopener noreferrer"><small>Connect</small><b>LinkedIn — projects &amp; certificates ↗</b></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>Alishba Altaf · Lahore</span><span>CS student · Developer · Creator</span></div>
+</footer>
+
+<script>
+(function () {
+  var canvas = document.getElementById('field');
+  var ctx = canvas.getContext('2d');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dots = [], w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var mouse = { x: -9999, y: -9999 };
+  var ACCENT = '255,111,125', INK = '235,232,225';
+
+  function size() {
+    var r = canvas.getBoundingClientRect();
+    w = r.width; h = r.height;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var n = Math.round(Math.min(110, Math.max(36, (w * h) / 11000)));
+    dots = [];
+    for (var i = 0; i < n; i++) {
+      dots.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35, r: Math.random() * 1.4 + .6, a: Math.random() < .14 });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    var i, j, a, b, dx, dy, d, md;
+    for (i = 0; i < dots.length; i++) {
+      a = dots[i];
+      if (!reduce) {
+        a.x += a.vx; a.y += a.vy;
+        if (a.x < 0 || a.x > w) a.vx *= -1;
+        if (a.y < 0 || a.y > h) a.vy *= -1;
+        dx = a.x - mouse.x; dy = a.y - mouse.y; md = Math.sqrt(dx * dx + dy * dy);
+        if (md < 110 && md > 0) { a.x += (dx / md) * 1.6; a.y += (dy / md) * 1.6; }
+      }
+      for (j = i + 1; j < dots.length; j++) {
+        b = dots[j]; dx = a.x - b.x; dy = a.y - b.y; d = dx * dx + dy * dy;
+        if (d < 14400) {
+          ctx.strokeStyle = 'rgba(' + (a.a || b.a ? ACCENT : INK) + ',' + (0.16 * (1 - d / 14400)) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      ctx.fillStyle = 'rgba(' + (a.a ? ACCENT : INK) + ',' + (a.a ? .9 : .45) + ')';
+      ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 6.2832); ctx.fill();
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  }
+
+  size(); draw();
+  if (window.ResizeObserver) { new ResizeObserver(function () { size(); if (reduce) draw(); }).observe(canvas); }
+  var hero = canvas.parentNode;
+  hero.addEventListener('pointermove', function (e) { var r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+  hero.addEventListener('pointerleave', function () { mouse.x = mouse.y = -9999; });
+})();
+</script>
+</body>
+</html>
